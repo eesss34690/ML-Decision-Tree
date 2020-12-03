@@ -1,0 +1,2714 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+        ML Lab01- Naive Bayes Report - HackMD
+    </title>
+    <link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
+    <link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" integrity="sha256-QiWfLIsCT02Sdwkogf6YMiQlj4NE84MKkzEMkZnMGdg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @charset "UTF-8";@import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i|Source+Code+Pro:300,400,500|Source+Sans+Pro:300,300i,400,400i,600,600i|Source+Serif+Pro&subset=latin-ext);.hljs{display:block;background:#fff;padding:.5em;color:#333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-emphasis,.hljs-quote,.hljs-string,.hljs-strong,.hljs-template-variable,.hljs-variable{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-attribute,.hljs-bullet,.hljs-literal,.hljs-number,.hljs-symbol{color:#0086b3}.hljs-built_in,.hljs-builtin-name{color:#005cc5}.hljs-name,.hljs-section{color:#63a35c}.hljs-tag{color:#333}.hljs-attr,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-title{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}.markdown-body{font-size:16px;line-height:1.5;word-wrap:break-word}.markdown-body:after,.markdown-body:before{display:table;content:""}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e7e7e7;border:0}.markdown-body blockquote{font-size:16px;padding:0 1em;color:#777;border-left:.25em solid #ddd}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd,.popover kbd{display:inline-block;padding:3px 5px;font-size:11px;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid #ccc;border-bottom-color:#bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#000;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#777}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{padding:0;list-style-type:none}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{padding-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:transparent}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{display:block;float:left;width:auto;padding:7px;margin:13px 0 0;overflow:hidden;border:1px solid #ddd}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{display:block;padding:5px 0 0;clear:both;color:#333}.markdown-body span.align-center{display:block;overflow:hidden;clear:both}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{display:block;overflow:hidden;clear:both}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{padding:0;padding-top:.2em;padding-bottom:.2em;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{letter-spacing:-.2em;content:"\00a0"}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f7f7f7;border-radius:3px}.markdown-body pre code,.markdown-body pre tt{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{padding:5px;overflow:hidden;font-size:12px;line-height:1;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{padding:10px 8px 9px;text-align:right;background:#fff;border:0}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{font-weight:700;background:#f8f8f8;border-top:0}.news .alert .markdown-body blockquote{padding:0 0 0 40px;border:0 none}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle;cursor:default!important}.markdown-body{padding-top:40px;padding-bottom:40px;max-width:758px;overflow:visible!important;position:relative}.markdown-body .emoji{vertical-align:top}.markdown-body pre{border:inherit!important}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{text-align:right;position:relative;display:inline-block;cursor:default;z-index:4;padding:0 8px 0 0;min-width:20px;box-sizing:content-box;color:#afafaf!important;border-right:3px solid #6ce26c!important}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-left:none;border-top:none;border-bottom:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-spacing:0;border-collapse:inherit!important}.markdown-body code[data-gist-id]{background:none;padding:0}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{overflow:unset;margin-bottom:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram,.markdown-body pre.vega{text-align:center;background-color:inherit;border-radius:0;white-space:inherit;overflow:visible}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code,.markdown-body pre.vega>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg,.markdown-body pre.vega>svg{max-width:100%;height:100%}.markdown-body pre>code.wrap{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}.markdown-body .alert>p,.markdown-body .alert>ul{margin-bottom:0}.markdown-body summary{display:list-item}.markdown-body summary:focus{outline:none}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none}.markdown-body figure{margin:1em 40px}.markdown-body .mark,.markdown-body mark{background-color:#fff1a7}.vimeo,.youtube{cursor:pointer;display:table;text-align:center;background-position:50%;background-repeat:no-repeat;background-size:contain;background-color:#000;overflow:hidden}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{width:100%;object-fit:contain;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{width:100%;height:100%;position:absolute;top:0;left:0}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{position:absolute;height:auto;width:auto;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;opacity:.3;transition:opacity .2s;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%}.MJX_Assistive_MathML{display:none}#MathJax_Message{z-index:1000!important}.ui-infobar{position:relative;z-index:2;max-width:760px;margin:25px auto -25px;color:#777}.toc .invisable-node{list-style-type:none}.ui-toc{position:fixed;bottom:20px;z-index:998}.ui-toc.both-mode{margin-left:8px}.ui-toc.both-mode .ui-toc-label{height:40px;padding:10px 4px;border-top-left-radius:0;border-bottom-left-radius:0}.ui-toc-label{background-color:#e6e6e6;border:none;color:#868686;transition:opacity .2s}.ui-toc .open .ui-toc-label{opacity:1;color:#fff;transition:opacity .2s}.ui-toc-label:focus{opacity:.3;background-color:#ccc;color:#000}.ui-toc-label:hover{opacity:1;background-color:#ccc;transition:opacity .2s}.ui-toc-dropdown{margin-top:20px;margin-bottom:20px;padding-left:10px;padding-right:10px;max-width:45vw;width:25vw;max-height:70vh;overflow:auto;text-align:inherit}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{padding-right:0;letter-spacing:.0029em}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{display:block;padding:4px 20px;font-size:13px;font-weight:500;color:#767676}.ui-toc-dropdown .nav>li:first-child:last-child > ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{padding-left:19px;color:#000;text-decoration:none;background-color:transparent;border-left:1px solid #000}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{padding-right:19px;border-left:none;border-right:1px solid #000}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{padding-left:18px;font-weight:700;color:#000;background-color:transparent;border-left:2px solid #000}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{padding-right:18px;border-left:none;border-right:2px solid #000}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{padding-top:1px;padding-bottom:1px;padding-left:30px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:40px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{padding-left:28px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{padding-left:38px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif}html[lang^=ja] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}html .markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html .markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html .markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}html[lang^=ja] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ\ Ｐゴシック,sans-serif}html[lang=zh-tw] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html[lang=zh-cn] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}html .ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ\ Ｐゴシック,sans-serif}html .ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html .ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}.ui-affix-toc{position:fixed;top:0;max-width:15vw;max-height:70vh;overflow:auto}.back-to-top,.expand-toggle,.go-to-bottom{display:block;padding:4px 10px;margin-top:10px;margin-left:10px;font-size:12px;font-weight:500;color:#999}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{width:20px;height:20px;display:block;border-radius:50%;margin-top:2px;margin-bottom:2px;margin-right:5px;background-position:50%;background-repeat:no-repeat;background-size:cover}.ui-user-icon.small{width:18px;height:18px;display:inline-block;vertical-align:middle;margin:0 0 .2em}.ui-infobar>small>span{line-height:22px}.ui-infobar>small .dropdown{display:inline-block}.ui-infobar>small .dropdown a:focus,.ui-infobar>small .dropdown a:hover{text-decoration:none}.ui-more-info{color:#888;cursor:pointer;vertical-align:middle}.ui-more-info .fa{font-size:16px}.ui-connectedGithub,.ui-published-note{color:#888}.ui-connectedGithub{line-height:23px;white-space:nowrap}.ui-connectedGithub a.file-path{color:#888;text-decoration:none;padding-left:22px}.ui-connectedGithub a.file-path:active,.ui-connectedGithub a.file-path:hover{color:#888;text-decoration:underline}.ui-connectedGithub .fa{font-size:20px}.ui-published-note .fa{font-size:20px;vertical-align:top}.unselectable{-webkit-user-select:none;-o-user-select:none;user-select:none}.selectable{-webkit-user-select:text;-o-user-select:text;user-select:text}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{position:relative;z-index:1;color:#222}.markdown-body.slides:before{content:"";display:block;position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;background-color:currentColor;box-shadow:0 0 0 50vw}.markdown-body.slides section[data-markdown]{position:relative;margin-bottom:1.5em;background-color:#fff;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{position:absolute;top:50%;left:1em;right:1em;transform:translateY(-50%);max-height:100%;overflow:hidden}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{content:"";position:absolute;top:-1.5em;right:1em;height:1.5em;border:3px solid #777}.site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;text-shadow:0 0 1em transparent,1px 1px 1.2px rgba(0,0,0,.004);-webkit-overflow-scrolling:touch;letter-spacing:.025em;font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] body{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}abbr[data-original-title],abbr[title]{cursor:help}body.modal-open{overflow-y:auto;padding-right:0!important}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid comment-inner comment-enabled" data-hard-breaks="true"><h1 id="ML-Lab01--Naive-Bayes-Report" data-id="ML-Lab01--Naive-Bayes-Report"><a class="anchor hidden-xs" href="#ML-Lab01--Naive-Bayes-Report" title="ML-Lab01--Naive-Bayes-Report"><span class="octicon octicon-link"></span></a><span>ML Lab01- Naive Bayes Report</span></h1><p><span>ID: 0710171</span><br>
+<span>Department: NCTU EE</span><br>
+<span>Name: 李茵淇</span></p><h2 id="Code-Explanation" data-id="Code-Explanation"><a class="anchor hidden-xs" href="#Code-Explanation" title="Code-Explanation"><span class="octicon octicon-link"></span></a><span>Code Explanation</span></h2><h3 id="Data-input" data-id="Data-input"><a class="anchor hidden-xs" href="#Data-input" title="Data-input"><span class="octicon octicon-link"></span></a><span>Data input</span></h3><ul>
+<li><span>code (part I)</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span></div><div class="code"><span class="hljs-comment"># data input</span>
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np 
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> math
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">from</span> math <span class="hljs-keyword">import</span> sqrt
+
+training = pd.read_csv(<span class="hljs-string">'agaricus-lepiota.data'</span>, sep=<span class="hljs-string">","</span>, header=<span class="hljs-keyword">None</span>)
+training2 = pd.read_csv(<span class="hljs-string">'bezdekIris.data'</span>, sep=<span class="hljs-string">","</span>, header=<span class="hljs-keyword">None</span>)
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>先把大致上會用到的library引入</span></li>
+<li><span>透過panda的</span><strong><span>read_csv</span></strong><span>把兩個資料(mushroom、iris)都放入</span></li>
+</ul>
+</li>
+<li><span>code (part II)</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span>
+<span data-linenumber="18"></span>
+<span data-linenumber="19"></span>
+<span data-linenumber="20"></span>
+<span data-linenumber="21"></span>
+<span data-linenumber="22"></span>
+<span data-linenumber="23"></span></div><div class="code"><span class="hljs-comment"># make sure&amp; transform</span>
+<span class="hljs-comment"># for mushroom</span>
+df_training = pd.DataFrame(training)
+df_training.columns=[<span class="hljs-string">'edibility'</span>,<span class="hljs-string">'cap-shape'</span>,<span class="hljs-string">'cap-surface'</span>,<span class="hljs-string">'cap-color'</span>,<span class="hljs-string">'bruises'</span>,<span class="hljs-string">'odor'</span>,<span class="hljs-string">'gill-attachment'</span>,<span class="hljs-string">'gill-spacing'</span>,<span class="hljs-string">'gill-size'</span>, <span class="hljs-string">'gill-color'</span>,<span class="hljs-string">'stalk-shape'</span>,<span class="hljs-string">'stalk-root'</span>,<span class="hljs-string">'stalk-surface-above-ring'</span>,<span class="hljs-string">'stalk-surface-below-ring'</span>,<span class="hljs-string">'stalk-color-above-ring'</span>, <span class="hljs-string">'stalk-color-below-ring'</span>,<span class="hljs-string">'veil-type'</span>, <span class="hljs-string">'veil-color'</span>,<span class="hljs-string">'ring-number'</span>,<span class="hljs-string">'ring-type'</span>, <span class="hljs-string">'spore-print-color'</span>,<span class="hljs-string">'population'</span>,<span class="hljs-string">'habitat'</span>]
+
+sample_num= len (df_training.index)
+feature_num = len(df_training.columns)<span class="hljs-number">-1</span>
+
+print(<span class="hljs-string">'mushroom:'</span>)
+print(<span class="hljs-string">'sample num '</span>, sample_num)
+print(<span class="hljs-string">'feature_num'</span>, feature_num)
+
+print()
+<span class="hljs-comment"># for iris</span>
+
+df_training2 = pd.DataFrame(training2)
+df_training2.columns=[<span class="hljs-string">'sepal_length'</span>,<span class="hljs-string">'sepal_width'</span>,<span class="hljs-string">'petal_length'</span>,<span class="hljs-string">'petal_width'</span>,<span class="hljs-string">'class'</span>]
+
+sample_num2= len (df_training2.index)
+feature_num2 = len(df_training2.columns)<span class="hljs-number">-1</span>
+print(<span class="hljs-string">'iris:'</span>)
+print(<span class="hljs-string">'sample num '</span>, sample_num2)
+print(<span class="hljs-string">'feature_num'</span>, feature_num2)
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>先把資料轉型成dataframe</span></li>
+<li><span>因為資料的column並沒有提供資料中的對應名稱，所以給他們各自自己的名字</span></li>
+<li><span>最後確認總共項目數，與有的特性數</span></li>
+</ul>
+</li>
+<li><span>Output</span></li>
+</ul><table>
+<thead>
+<tr>
+<th></th>
+<th><span>mushroom</span></th>
+<th><span>iris</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>sample num</span></td>
+<td><span>8124</span></td>
+<td><span>150</span></td>
+</tr>
+<tr>
+<td><span>feature num</span></td>
+<td><span>22</span></td>
+<td><span>4</span></td>
+</tr>
+</tbody>
+</table><h3 id="Data-visualization" data-id="Data-visualization"><a class="anchor hidden-xs" href="#Data-visualization" title="Data-visualization"><span class="octicon octicon-link"></span></a><span>Data visualization</span></h3><ul>
+<li><span>code (mushroom)</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span>
+<span data-linenumber="18"></span>
+<span data-linenumber="19"></span></div><div class="code"><span class="hljs-comment"># Data Visualization</span>
+<span class="hljs-comment"># for mushroom</span>
+first = df_training[df_training.columns[<span class="hljs-number">0</span>]] 
+feature = df_training[df_training.columns[<span class="hljs-number">1</span>:<span class="hljs-number">23</span>]] 
+edible = feature[first==<span class="hljs-string">'e'</span>] 
+poisonous = feature[first==<span class="hljs-string">'p'</span>] 
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,<span class="hljs-number">23</span>):     
+    A = df_training[(df_training.columns)[i]].value_counts()
+    print(A)
+    E = edible[(df_training.columns)[i]].value_counts()
+    P = poisonous[(df_training.columns)[i]].value_counts()
+    index = df_training[(df_training.columns)[i]].unique()
+    df = pd.DataFrame({<span class="hljs-string">'total'</span>:A,<span class="hljs-string">'edible'</span>: E,<span class="hljs-string">'poisonous'</span>: P}, index=index)
+    ax = df.plot.bar(rot=<span class="hljs-number">0</span>)
+    plt.title(<span class="hljs-string">'data distribution'</span>)
+    plt.xlabel((df_training.columns)[i])
+    plt.ylabel(<span class="hljs-string">'frequency'</span>)
+    plt.savefig((df_training.columns)[i])
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>先透過要分析的第一欄來把資料分成兩類: edible、poisonous</span></li>
+<li><span>針對每個feature計算離散資料的計數</span></li>
+<li><span>用bar chart來詮釋全部、分類的資料統計</span></li>
+</ul>
+</li>
+<li><span>Output</span></li>
+<li><span>cap-shape</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>x</span></td>
+<td><span>3656</span></td>
+</tr>
+<tr>
+<td><span>f</span></td>
+<td><span>3152</span></td>
+</tr>
+<tr>
+<td><span>k</span></td>
+<td><span>828</span></td>
+</tr>
+<tr>
+<td><span>b</span></td>
+<td><span>452</span></td>
+</tr>
+<tr>
+<td><span>s</span></td>
+<td><span>32</span></td>
+</tr>
+<tr>
+<td><span>c</span></td>
+<td><span>4</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>cap-surface</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>y</span></td>
+<td><span>3244</span></td>
+</tr>
+<tr>
+<td><span>s</span></td>
+<td><span>2556</span></td>
+</tr>
+<tr>
+<td><span>f</span></td>
+<td><span>2320</span></td>
+</tr>
+<tr>
+<td><span>g</span></td>
+<td><span>4</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>cap-color</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>n</span></td>
+<td><span>2284</span></td>
+</tr>
+<tr>
+<td><span>g</span></td>
+<td><span>1840</span></td>
+</tr>
+<tr>
+<td><span>e</span></td>
+<td><span>1500</span></td>
+</tr>
+<tr>
+<td><span>y</span></td>
+<td><span>1072</span></td>
+</tr>
+<tr>
+<td><span>w</span></td>
+<td><span>1040</span></td>
+</tr>
+<tr>
+<td><span>b</span></td>
+<td><span>168</span></td>
+</tr>
+<tr>
+<td><span>p</span></td>
+<td><span>144</span></td>
+</tr>
+<tr>
+<td><span>c</span></td>
+<td><span>44</span></td>
+</tr>
+<tr>
+<td><span>r</span></td>
+<td><span>16</span></td>
+</tr>
+<tr>
+<td><span>u</span></td>
+<td><span>16</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>bruises</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>f</span></td>
+<td><span>4748</span></td>
+</tr>
+<tr>
+<td><span>t</span></td>
+<td><span>3376</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>odor</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>n</span></td>
+<td><span>3528</span></td>
+</tr>
+<tr>
+<td><span>f</span></td>
+<td><span>2160</span></td>
+</tr>
+<tr>
+<td><span>s</span></td>
+<td><span>576</span></td>
+</tr>
+<tr>
+<td><span>y</span></td>
+<td><span>576</span></td>
+</tr>
+<tr>
+<td><span>a</span></td>
+<td><span>400</span></td>
+</tr>
+<tr>
+<td><span>l</span></td>
+<td><span>400</span></td>
+</tr>
+<tr>
+<td><span>p</span></td>
+<td><span>256</span></td>
+</tr>
+<tr>
+<td><span>c</span></td>
+<td><span>192</span></td>
+</tr>
+<tr>
+<td><span>m</span></td>
+<td><span>36</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>gill-attachment</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>f</span></td>
+<td><span>7914</span></td>
+</tr>
+<tr>
+<td><span>a</span></td>
+<td><span>210</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>gill-spacing</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>c</span></td>
+<td><span>6812</span></td>
+</tr>
+<tr>
+<td><span>w</span></td>
+<td><span>1312</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>gill-size</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>b</span></td>
+<td><span>5612</span></td>
+</tr>
+<tr>
+<td><span>n</span></td>
+<td><span>2512</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>gill-color</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>b</span></td>
+<td><span>1728</span></td>
+</tr>
+<tr>
+<td><span>p</span></td>
+<td><span>1492</span></td>
+</tr>
+<tr>
+<td><span>w</span></td>
+<td><span>1202</span></td>
+</tr>
+<tr>
+<td><span>n</span></td>
+<td><span>1048</span></td>
+</tr>
+<tr>
+<td><span>g</span></td>
+<td><span>752</span></td>
+</tr>
+<tr>
+<td><span>h</span></td>
+<td><span>732</span></td>
+</tr>
+<tr>
+<td><span>u</span></td>
+<td><span>492</span></td>
+</tr>
+<tr>
+<td><span>k</span></td>
+<td><span>408</span></td>
+</tr>
+<tr>
+<td><span>e</span></td>
+<td><span>96</span></td>
+</tr>
+<tr>
+<td><span>y</span></td>
+<td><span>86</span></td>
+</tr>
+<tr>
+<td><span>o</span></td>
+<td><span>64</span></td>
+</tr>
+<tr>
+<td><span>r</span></td>
+<td><span>24</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>stalk-shape</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>t</span></td>
+<td><span>4608</span></td>
+</tr>
+<tr>
+<td><span>e</span></td>
+<td><span>3516</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>stalk-root</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>b</span></td>
+<td><span>3776</span></td>
+</tr>
+<tr>
+<td><span>?</span></td>
+<td><span>2480</span></td>
+</tr>
+<tr>
+<td><span>e</span></td>
+<td><span>1120</span></td>
+</tr>
+<tr>
+<td><span>c</span></td>
+<td><span>556</span></td>
+</tr>
+<tr>
+<td><span>r</span></td>
+<td><span>192</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>stalk-surface-above-ring</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>s</span></td>
+<td><span>5176</span></td>
+</tr>
+<tr>
+<td><span>k</span></td>
+<td><span>2372</span></td>
+</tr>
+<tr>
+<td><span>f</span></td>
+<td><span>552</span></td>
+</tr>
+<tr>
+<td><span>y</span></td>
+<td><span>24</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>stalk-surface-below-ring</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>s</span></td>
+<td><span>4936</span></td>
+</tr>
+<tr>
+<td><span>k</span></td>
+<td><span>2304</span></td>
+</tr>
+<tr>
+<td><span>f</span></td>
+<td><span>600</span></td>
+</tr>
+<tr>
+<td><span>y</span></td>
+<td><span>284</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>stalk-color-above-ring</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>w</span></td>
+<td><span>4464</span></td>
+</tr>
+<tr>
+<td><span>p</span></td>
+<td><span>1872</span></td>
+</tr>
+<tr>
+<td><span>g</span></td>
+<td><span>576</span></td>
+</tr>
+<tr>
+<td><span>n</span></td>
+<td><span>448</span></td>
+</tr>
+<tr>
+<td><span>b</span></td>
+<td><span>432</span></td>
+</tr>
+<tr>
+<td><span>o</span></td>
+<td><span>192</span></td>
+</tr>
+<tr>
+<td><span>e</span></td>
+<td><span>96</span></td>
+</tr>
+<tr>
+<td><span>c</span></td>
+<td><span>36</span></td>
+</tr>
+<tr>
+<td><span>y</span></td>
+<td><span>8</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>stalk-color-below-ring</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>w</span></td>
+<td><span>4384</span></td>
+</tr>
+<tr>
+<td><span>p</span></td>
+<td><span>1872</span></td>
+</tr>
+<tr>
+<td><span>g</span></td>
+<td><span>576</span></td>
+</tr>
+<tr>
+<td><span>n</span></td>
+<td><span>512</span></td>
+</tr>
+<tr>
+<td><span>b</span></td>
+<td><span>432</span></td>
+</tr>
+<tr>
+<td><span>o</span></td>
+<td><span>192</span></td>
+</tr>
+<tr>
+<td><span>e</span></td>
+<td><span>96</span></td>
+</tr>
+<tr>
+<td><span>c</span></td>
+<td><span>36</span></td>
+</tr>
+<tr>
+<td><span>y</span></td>
+<td><span>24</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>veil-type</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>p</span></td>
+<td><span>8124</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>veil-color</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>w</span></td>
+<td><span>7924</span></td>
+</tr>
+<tr>
+<td><span>o</span></td>
+<td><span>96</span></td>
+</tr>
+<tr>
+<td><span>n</span></td>
+<td><span>96</span></td>
+</tr>
+<tr>
+<td><span>y</span></td>
+<td><span>8</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>ring-number</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>o</span></td>
+<td><span>7488</span></td>
+</tr>
+<tr>
+<td><span>t</span></td>
+<td><span>600</span></td>
+</tr>
+<tr>
+<td><span>n</span></td>
+<td><span>36</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>ring-type</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>p</span></td>
+<td><span>3968</span></td>
+</tr>
+<tr>
+<td><span>e</span></td>
+<td><span>2776</span></td>
+</tr>
+<tr>
+<td><span>l</span></td>
+<td><span>1296</span></td>
+</tr>
+<tr>
+<td><span>f</span></td>
+<td><span>48</span></td>
+</tr>
+<tr>
+<td><span>n</span></td>
+<td><span>36</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>spore-print-color</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>w</span></td>
+<td><span>2388</span></td>
+</tr>
+<tr>
+<td><span>n</span></td>
+<td><span>1968</span></td>
+</tr>
+<tr>
+<td><span>k</span></td>
+<td><span>1872</span></td>
+</tr>
+<tr>
+<td><span>h</span></td>
+<td><span>1632</span></td>
+</tr>
+<tr>
+<td><span>r</span></td>
+<td><span>72</span></td>
+</tr>
+<tr>
+<td><span>o</span></td>
+<td><span>48</span></td>
+</tr>
+<tr>
+<td><span>b</span></td>
+<td><span>48</span></td>
+</tr>
+<tr>
+<td><span>y</span></td>
+<td><span>48</span></td>
+</tr>
+<tr>
+<td><span>u</span></td>
+<td><span>48</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>population</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>v</span></td>
+<td><span>4040</span></td>
+</tr>
+<tr>
+<td><span>y</span></td>
+<td><span>1712</span></td>
+</tr>
+<tr>
+<td><span>s</span></td>
+<td><span>1248</span></td>
+</tr>
+<tr>
+<td><span>n</span></td>
+<td><span>400</span></td>
+</tr>
+<tr>
+<td><span>a</span></td>
+<td><span>384</span></td>
+</tr>
+<tr>
+<td><span>c</span></td>
+<td><span>340</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>habitat</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>frequency</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>d</span></td>
+<td><span>3148</span></td>
+</tr>
+<tr>
+<td><span>g</span></td>
+<td><span>2148</span></td>
+</tr>
+<tr>
+<td><span>p</span></td>
+<td><span>1144</span></td>
+</tr>
+<tr>
+<td><span>l</span></td>
+<td><span>832</span></td>
+</tr>
+<tr>
+<td><span>u</span></td>
+<td><span>368</span></td>
+</tr>
+<tr>
+<td><span>m</span></td>
+<td><span>292</span></td>
+</tr>
+<tr>
+<td><span>w</span></td>
+<td><span>192</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li>
+<p><span>Pictures Saved</span><br>
+<img src="https://i.imgur.com/mdZJ718.png" alt=""><br>
+<img src="https://i.imgur.com/9un1Zbo.png" alt=""><br>
+<img src="https://i.imgur.com/PP6lJ7J.png" alt=""><br>
+<img src="https://i.imgur.com/2l6p3YD.png" alt=""><br>
+<img src="https://i.imgur.com/DOk97Py.png" alt=""><br>
+<img src="https://i.imgur.com/EQVi7Pq.png" alt=""><br>
+<img src="https://i.imgur.com/NG3ulim.png" alt=""><br>
+<img src="https://i.imgur.com/gseNwuD.png" alt=""><br>
+<img src="https://i.imgur.com/CuEzhhJ.png" alt=""><br>
+<img src="https://i.imgur.com/kFQ6M96.png" alt=""><br>
+<img src="https://i.imgur.com/hnF5lAc.png" alt=""><br>
+<img src="https://i.imgur.com/AJlIwzb.png" alt=""><br>
+<img src="https://i.imgur.com/OxSbEm7.png" alt=""><br>
+<img src="https://i.imgur.com/h3EFR6F.png" alt=""><br>
+<img src="https://i.imgur.com/nHFxXBh.png" alt=""><br>
+<img src="https://i.imgur.com/yB4HvzD.png" alt=""><br>
+<img src="https://i.imgur.com/eWhEITU.png" alt=""><br>
+<img src="https://i.imgur.com/RLGIt66.png" alt=""><br>
+<img src="https://i.imgur.com/8flrDAQ.png" alt=""><br>
+<img src="https://i.imgur.com/Y4JPeJQ.png" alt=""><br>
+<img src="https://i.imgur.com/65EVZl1.png" alt=""><br>
+<img src="https://i.imgur.com/RBzYxmK.png" alt=""></p>
+</li>
+<li>
+<p><span>code (iris)  part I</span></p>
+</li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span>
+<span data-linenumber="18"></span>
+<span data-linenumber="19"></span>
+<span data-linenumber="20"></span>
+<span data-linenumber="21"></span>
+<span data-linenumber="22"></span>
+<span data-linenumber="23"></span></div><div class="code"><span class="hljs-comment"># Data Visualization</span>
+<span class="hljs-comment"># for iris</span>
+<span class="hljs-comment"># require binning</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">binning</span><span class="hljs-params">(a)</span>:</span>
+    s= len(a)/<span class="hljs-number">5</span>
+    a.reset_index(drop = <span class="hljs-keyword">True</span>, inplace = <span class="hljs-keyword">True</span>)
+    split = a.index &lt; s
+    get1 = a[split]
+    split = np.logical_and(a.index &gt;= s , a.index &lt; <span class="hljs-number">2</span>*s)
+    get2 = a[split]
+    split = np.logical_and(a.index &gt;= <span class="hljs-number">2</span>*s , a.index &lt; <span class="hljs-number">3</span>*s)
+    get3  = a[split]
+    split = np.logical_and(a.index &gt;= <span class="hljs-number">3</span>*s , a.index &lt; <span class="hljs-number">4</span>*s)
+    get4  = a[split]
+    split = np.logical_and(a.index &gt;= <span class="hljs-number">4</span>*s , a.index &lt; <span class="hljs-number">5</span>*s)
+    get5  = a[split]
+    get2 = get2.reset_index(drop=<span class="hljs-keyword">True</span>)
+    get3 = get3.reset_index(drop=<span class="hljs-keyword">True</span>)
+    get4 = get4.reset_index(drop=<span class="hljs-keyword">True</span>)
+    get5 = get5.reset_index(drop=<span class="hljs-keyword">True</span>)
+    <span class="hljs-keyword">return</span> get1, get2, get3, get4, get5
+
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>因為是連續的數字訊息，所以需要做binning</span></li>
+<li><span>透過同樣數量的物品為同組，可以看到在標準中不同部分的植物feature平均大小</span></li>
+<li><span>統計學上可以看出0~ 20%、20~ 40%、40~ 60%、60~ 80%、80~ 100%大小分布</span></li>
+<li><span>因為index不會隨著被抽離(</span><strong><span>split</span></strong><span>)出來自動重新標號，所以需要</span><strong><span>reset_index</span></strong><span>來完成</span></li>
+</ul>
+</li>
+<li><span>part II</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span>
+<span data-linenumber="18"></span></div><div class="code"><span class="hljs-comment"># Data Visualization</span>
+<span class="hljs-comment"># for iris</span>
+<span class="hljs-comment"># show the average in the range of 20% in order to view the distribution</span>
+
+lst_avg = []
+lst_std = []
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>,<span class="hljs-number">4</span>):     
+    A = df_training2[(df_training2.columns)[i]].sum()/len (df_training2.index)
+    B = sum([(x-A)**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> df_training2[(df_training2.columns)[i]]]) / float(len (df_training2.index)<span class="hljs-number">-1</span>)
+    lst_avg.append(A)
+    lst_std.append(sqrt(B))
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">4</span>):
+    print((df_training2.columns)[i])
+    print(<span class="hljs-string">'Avg: '</span>, lst_avg[i])
+    print(<span class="hljs-string">'Std: '</span>, lst_std[i])
+    print()
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li>
+<p><span>先處理全部的平均跟標準差，公式如下</span><br>
+<img src="https://i.imgur.com/eJf5sy3.png" alt=""></p>
+</li>
+<li>
+<p><span>只要把各段的數字分別帶入求得數值就好</span></p>
+</li>
+</ul>
+</li>
+<li><span>Output</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>feature</span></th>
+<th><span>Average</span></th>
+<th><span>Standard Deviation</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>sepal_length</span></td>
+<td><span>5.843333333333334</span></td>
+<td><span>0.8280661279778629</span></td>
+</tr>
+<tr>
+<td><span>sepal_width</span></td>
+<td><span>3.0573333333333337</span></td>
+<td><span>0.4358662849366981</span></td>
+</tr>
+<tr>
+<td><span>petal_length</span></td>
+<td><span>3.7580000000000005</span></td>
+<td><span>1.7652982332594676</span></td>
+</tr>
+<tr>
+<td><span>petal_width</span></td>
+<td><span>1.1993333333333334</span></td>
+<td><span>0.7622376689603462</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>part III</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span>
+<span data-linenumber="18"></span>
+<span data-linenumber="19"></span>
+<span data-linenumber="20"></span>
+<span data-linenumber="21"></span>
+<span data-linenumber="22"></span>
+<span data-linenumber="23"></span>
+<span data-linenumber="24"></span>
+<span data-linenumber="25"></span>
+<span data-linenumber="26"></span>
+<span data-linenumber="27"></span>
+<span data-linenumber="28"></span>
+<span data-linenumber="29"></span>
+<span data-linenumber="30"></span>
+<span data-linenumber="31"></span>
+<span data-linenumber="32"></span>
+<span data-linenumber="33"></span>
+<span data-linenumber="34"></span>
+<span data-linenumber="35"></span>
+<span data-linenumber="36"></span>
+<span data-linenumber="37"></span>
+<span data-linenumber="38"></span>
+<span data-linenumber="39"></span>
+<span data-linenumber="40"></span>
+<span data-linenumber="41"></span>
+<span data-linenumber="42"></span>
+<span data-linenumber="43"></span>
+<span data-linenumber="44"></span>
+<span data-linenumber="45"></span>
+<span data-linenumber="46"></span>
+<span data-linenumber="47"></span>
+<span data-linenumber="48"></span>
+<span data-linenumber="49"></span>
+<span data-linenumber="50"></span>
+<span data-linenumber="51"></span>
+<span data-linenumber="52"></span>
+<span data-linenumber="53"></span>
+<span data-linenumber="54"></span>
+<span data-linenumber="55"></span>
+<span data-linenumber="56"></span>
+<span data-linenumber="57"></span>
+<span data-linenumber="58"></span>
+<span data-linenumber="59"></span>
+<span data-linenumber="60"></span>
+<span data-linenumber="61"></span>
+<span data-linenumber="62"></span></div><div class="code">percent = [<span class="hljs-number">0.2</span>, <span class="hljs-number">0.4</span>, <span class="hljs-number">0.6</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">1</span>]
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>,<span class="hljs-number">4</span>):
+    df_training2.sort_values(by=[(df_training2.columns)[i]], ascending=<span class="hljs-keyword">True</span>, inplace=<span class="hljs-keyword">True</span>)
+    first = df_training2[df_training2.columns[<span class="hljs-number">-1</span>]] 
+    se = df_training2[first==<span class="hljs-string">'Iris-setosa'</span>]
+    ve = df_training2[first==<span class="hljs-string">'Iris-versicolor'</span>]
+    vi = df_training2[first==<span class="hljs-string">'Iris-virginica'</span>]
+    lst = []
+    lst_se = []
+    lst_ve = []
+    lst_vi = []
+    get1, get2, get3, get4, get5= binning(df_training2)
+    lst.append(get1)
+    lst.append(get2)
+    lst.append(get3)
+    lst.append(get4)
+    lst.append(get5)
+    get1, get2, get3, get4, get5= binning(se)
+    lst_se.append(get1)
+    lst_se.append(get2)
+    lst_se.append(get3)
+    lst_se.append(get4)
+    lst_se.append(get5)
+    get1, get2, get3, get4, get5= binning(ve)
+    lst_ve.append(get1)
+    lst_ve.append(get2)
+    lst_ve.append(get3)
+    lst_ve.append(get4)
+    lst_ve.append(get5)
+    get1, get2, get3, get4, get5= binning(vi)
+    lst_vi.append(get1)
+    lst_vi.append(get2)
+    lst_vi.append(get3)
+    lst_vi.append(get4)
+    lst_vi.append(get5)
+    
+    res = []
+    res_se = []
+    res_ve = []
+    res_vi = []
+    print((df_training2.columns)[i], <span class="hljs-string">'percentage average: '</span>)
+    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>,<span class="hljs-number">5</span>):
+        print(percent[j])
+        res.append((lst[j])[((lst[j]).columns)[i]].sum()/len (((lst[j])).index))
+        res_se.append((lst_se[j])[((lst_se[j]).columns)[i]].sum()/len (((lst_se[j])).index))
+        res_ve.append((lst_ve[j])[((lst_ve[j]).columns)[i]].sum()/len (((lst_ve[j])).index))
+        res_vi.append((lst_vi[j])[((lst_vi[j]).columns)[i]].sum()/len (((lst_vi[j])).index))
+        print(<span class="hljs-string">'overall '</span>, res[<span class="hljs-number">-1</span>])
+        print(<span class="hljs-string">'se '</span>, res_se[<span class="hljs-number">-1</span>])
+        print(<span class="hljs-string">'ve '</span>, res_ve[<span class="hljs-number">-1</span>])
+        print(<span class="hljs-string">'vi '</span>, res_vi[<span class="hljs-number">-1</span>])
+    print()
+    plt.figure(figsize=(<span class="hljs-number">9</span>,<span class="hljs-number">6</span>),dpi=<span class="hljs-number">100</span>,linewidth = <span class="hljs-number">2</span>)
+    plt.plot(percent,res,<span class="hljs-string">'-o'</span>, label = <span class="hljs-string">'overall'</span>)
+    plt.plot(percent,res_se,<span class="hljs-string">'-o'</span>, label = <span class="hljs-string">'Iris-setosa'</span>)
+    plt.plot(percent,res_ve,<span class="hljs-string">'-o'</span>, label = <span class="hljs-string">'Iris-versicolor'</span>)
+    plt.plot(percent,res_vi,<span class="hljs-string">'-o'</span>, label = <span class="hljs-string">'Iris-virginica'</span>)
+    plt.xlabel(<span class="hljs-string">'percent'</span>)
+    plt.ylabel(<span class="hljs-string">'value frequency'</span>)
+    plt.legend(loc=<span class="hljs-string">'upper left'</span>)
+    plt.savefig((df_training2.columns)[i])
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>針對不同的feature來討論</span></li>
+<li><span>先透過要討論的feature重新分配大小</span></li>
+<li><span>跟mushroom一樣，根據要討論的特徵來分類，這次分成3類</span></li>
+<li><span>因為已經是由小到大排序，所以可以分成大小落在不同區間的物種 (透過part II 的 </span><strong><span>binning</span></strong><span>)</span></li>
+<li><span>分別將overall跟其他三類的切割成五大區後放入list中</span></li>
+<li><span>針對不同區間的物種計算該特徵的平均</span></li>
+<li><span>之後透過折線圖來表示</span></li>
+</ul>
+</li>
+<li><span>Output</span></li>
+<li><span>sepal_length</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>0~0.2</span></th>
+<th><span>0.2~0.4</span></th>
+<th><span>0.4~0.6</span></th>
+<th><span>0.6~0.8</span></th>
+<th><span>0.8~1</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>overall</span></td>
+<td><span>4.7733333333333325</span></td>
+<td><span>5.283333333333333</span></td>
+<td><span>5.8</span></td>
+<td><span>6.31</span></td>
+<td><span>7.049999999999998</span></td>
+</tr>
+<tr>
+<td><span>Iris_Setosa</span></td>
+<td><span>4.51</span></td>
+<td><span>4.83</span></td>
+<td><span>5.0200000000000005</span></td>
+<td><span>5.15</span></td>
+<td><span>5.5200000000000005</span></td>
+</tr>
+<tr>
+<td><span>Iris Versicolour</span></td>
+<td><span>5.26</span></td>
+<td><span>5.630000000000001</span></td>
+<td><span>5.890000000000001</span></td>
+<td><span>6.209999999999999</span></td>
+<td><span>6.69</span></td>
+</tr>
+<tr>
+<td><span>Iris Virginica</span></td>
+<td><span>5.76</span></td>
+<td><span>6.27</span></td>
+<td><span>6.5</span></td>
+<td><span>6.87</span></td>
+<td><span>7.540000000000001</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>sepal_width</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>0~0.2</span></th>
+<th><span>0.2~0.4</span></th>
+<th><span>0.4~0.6</span></th>
+<th><span>0.6~0.8</span></th>
+<th><span>0.8~1</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>overall</span></td>
+<td><span>2.473333333333334</span></td>
+<td><span>2.8433333333333337</span></td>
+<td><span>3.023333333333332</span></td>
+<td><span>3.2533333333333347</span></td>
+<td><span>3.693333333333334</span></td>
+</tr>
+<tr>
+<td><span>Iris_Setosa</span></td>
+<td><span>2.9400000000000004</span></td>
+<td><span>3.22</span></td>
+<td><span>3.4200000000000004</span></td>
+<td><span>3.5900000000000007</span></td>
+<td><span>3.9699999999999998</span></td>
+</tr>
+<tr>
+<td><span>Iris Versicolour</span></td>
+<td><span>2.3</span></td>
+<td><span>2.6100000000000003</span></td>
+<td><span>2.8199999999999994</span></td>
+<td><span>2.96</span></td>
+<td><span>3.1599999999999997</span></td>
+</tr>
+<tr>
+<td><span>Iris Virginica</span></td>
+<td><span>2.55</span></td>
+<td><span>2.8</span></td>
+<td><span>2.9899999999999998</span></td>
+<td><span>3.1</span></td>
+<td><span>3.4299999999999997</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>petal_length</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>0~0.2</span></th>
+<th><span>0.2~0.4</span></th>
+<th><span>0.4~0.6</span></th>
+<th><span>0.6~0.8</span></th>
+<th><span>0.8~1</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>overall</span></td>
+<td><span>1.3599999999999999</span></td>
+<td><span>2.2600000000000002</span></td>
+<td><span>4.299999999999999</span></td>
+<td><span>4.966666666666667</span></td>
+<td><span>5.903333333333333</span></td>
+</tr>
+<tr>
+<td><span>Iris_Setosa</span></td>
+<td><span>1.23</span></td>
+<td><span>1.3900000000000001</span></td>
+<td><span>1.46</span></td>
+<td><span>1.5299999999999998</span></td>
+<td><span>1.7</span></td>
+</tr>
+<tr>
+<td><span>Iris Versicolour</span></td>
+<td><span>3.55</span></td>
+<td><span>4.040000000000001</span></td>
+<td><span>4.33</span></td>
+<td><span>4.550000000000001</span></td>
+<td><span>4.83</span></td>
+</tr>
+<tr>
+<td><span>Iris Virginica</span></td>
+<td><span>4.89</span></td>
+<td><span>5.159999999999999</span></td>
+<td><span>5.529999999999999</span></td>
+<td><span>5.79</span></td>
+<td><span>6.39</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>petal_width</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>0~0.2</span></th>
+<th><span>0.2~0.4</span></th>
+<th><span>0.4~0.6</span></th>
+<th><span>0.6~0.8</span></th>
+<th><span>0.8~1</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>overall</span></td>
+<td><span>0.1833333333333334</span></td>
+<td><span>0.5700000000000001</span></td>
+<td><span>1.3366666666666664</span></td>
+<td><span>1.6999999999999995</span></td>
+<td><span>2.206666666666666</span></td>
+</tr>
+<tr>
+<td><span>Iris_Setosa</span></td>
+<td><span>0.15</span></td>
+<td><span>0.2</span></td>
+<td><span>0.2</span></td>
+<td><span>0.25999999999999995</span></td>
+<td><span>0.42000000000000004</span></td>
+</tr>
+<tr>
+<td><span>Iris Versicolour</span></td>
+<td><span>1.0299999999999998</span></td>
+<td><span>1.25</span></td>
+<td><span>1.32</span></td>
+<td><span>1.45</span></td>
+<td><span>1.58</span></td>
+</tr>
+<tr>
+<td><span>Iris Virginica</span></td>
+<td><span>1.67</span></td>
+<td><span>1.8399999999999999</span></td>
+<td><span>2.0200000000000005</span></td>
+<td><span>2.21</span></td>
+<td><span>2.3899999999999997</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>Pictures Saved</span><br>
+<img src="https://i.imgur.com/7knfbLN.png" alt=""><br>
+<span>sepal_length</span><br>
+<img src="https://i.imgur.com/PwH6xto.png" alt=""><br>
+<span>sepal_width</span><br>
+<img src="https://i.imgur.com/efq7DBA.png" alt=""><br>
+<span>petal_length</span><br>
+<img src="https://i.imgur.com/w8PPQfl.png" alt=""><br>
+<span>petal_width</span></li>
+</ul><h3 id="Data-Preprocessing" data-id="Data-Preprocessing"><a class="anchor hidden-xs" href="#Data-Preprocessing" title="Data-Preprocessing"><span class="octicon octicon-link"></span></a><span>Data Preprocessing</span></h3><ul>
+<li><span>code (mushroom) part I</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span></div><div class="code"><span class="hljs-comment"># Data Preprocessing</span>
+<span class="hljs-comment"># for mushroom</span>
+df_drop = df_training.drop([<span class="hljs-string">'stalk-root'</span>],axis = <span class="hljs-number">1</span>)
+print(<span class="hljs-string">'before dropping'</span>)
+print(<span class="hljs-string">'sample num: '</span>, sample_num)
+print(<span class="hljs-string">'feature num: '</span>, feature_num)
+
+print()
+sample_num=len(df_drop.index)
+feature_num = len(df_drop.columns)<span class="hljs-number">-1</span>
+print(<span class="hljs-string">'after dropping'</span>)
+print(<span class="hljs-string">'sample num: '</span>, sample_num)
+print(<span class="hljs-string">'feature num: '</span>, feature_num)
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>根據資料提供，</span><strong><span>stalk-root</span></strong><span>裡面有missing，所以需要被drop</span></li>
+<li><span>drop完透過output驗證feature數目減少</span></li>
+</ul>
+</li>
+<li><span>Output</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>state</span></th>
+<th><span>sample num</span></th>
+<th><span>feature num</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>before dropping</span></td>
+<td><span>8124</span></td>
+<td><span>22</span></td>
+</tr>
+<tr>
+<td><span>after dropping</span></td>
+<td><span>8124</span></td>
+<td><span>21</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>part II</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span></div><div class="code"><span class="hljs-comment"># Data Preprocessing</span>
+<span class="hljs-comment"># for number</span>
+<span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> preprocessing
+le = preprocessing.LabelEncoder()
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">22</span>):
+    df_drop[df_drop.columns[i]] = le.fit_transform(df_drop[df_drop.columns[i]])
+
+df_training2[df_training2.columns[<span class="hljs-number">-1</span>]] = le.fit_transform(df_training2[df_training2.columns[<span class="hljs-number">-1</span>]])
+print(df_training2)
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>因為分類項的形式沒辦法套用之後的模組，所以必須改成數字</span></li>
+<li><span>透過sklearn裡面的</span><strong><span>preprocessing</span></strong><span>有提供給編號功能改變數值</span></li>
+<li><span>最後把datatframe印出驗證</span></li>
+</ul>
+</li>
+<li><span>output</span></li>
+</ul><blockquote>
+<pre><code> sepal_length  sepal_width  petal_length  petal_width  class
+ 0             4.8          3.0           1.4          0.1      0
+ 1             4.3          3.0           1.1          0.1      0
+ 2             4.9          3.6           1.4          0.1      0
+ 3             4.9          3.1           1.5          0.1      0
+ 4             5.2          4.1           1.5          0.1      0
+ ..            ...          ...           ...          ...    ...
+ 145           6.7          3.1           5.6          2.4      2
+ 146           5.8          2.8           5.1          2.4      2
+ 147           6.7          3.3           5.7          2.5      2
+ 148           6.3          3.3           6.0          2.5      2
+ 149           7.2          3.6           6.1          2.5      2
+ [150 rows x 5 columns]
+</code></pre>
+</blockquote><p><span>-part III</span></p><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span></div><div class="code"><span class="hljs-comment"># Data Preprocessing</span>
+<span class="hljs-comment"># shuffle</span>
+<span class="hljs-comment"># for mushroom</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">shuffle</span><span class="hljs-params">(df)</span>:</span> 
+    np.random.seed(<span class="hljs-number">10</span>)
+    df2 = df.reindex(np.random.permutation(df.index))
+    df3 = df2.reset_index(drop=<span class="hljs-keyword">True</span>)
+    <span class="hljs-keyword">return</span> df3
+
+df_shuffle = shuffle(df_drop)
+df_shuffle2 = shuffle(df_training2)
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>對資料進行亂數分配</span></li>
+<li><span>使用</span><strong><span>seed</span></strong><span>亂數來</span><strong><span>reindex</span></strong></li>
+</ul>
+</li>
+</ul><h3 id="Train-Test-Split" data-id="Train-Test-Split"><a class="anchor hidden-xs" href="#Train-Test-Split" title="Train-Test-Split"><span class="octicon octicon-link"></span></a><span>Train-Test-Split</span></h3><ul>
+<li><span>code (Holdout)</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span>
+<span data-linenumber="18"></span>
+<span data-linenumber="19"></span>
+<span data-linenumber="20"></span>
+<span data-linenumber="21"></span>
+<span data-linenumber="22"></span></div><div class="code"><span class="hljs-comment"># Train-Test-Split</span>
+<span class="hljs-comment"># for mushroom, iris</span>
+<span class="hljs-comment"># Holdout</span>
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+<span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> random_projection
+
+lst_tra = []
+lst_tes = []
+
+transformer = random_projection.GaussianRandomProjection()
+train_holdout, test_holdout = train_test_split(df_shuffle, random_state=<span class="hljs-number">777</span>, train_size=<span class="hljs-number">0.7</span>)
+
+lst_tra.append(train_holdout) 
+lst_tes.append(test_holdout)
+
+lst_tra2 = []
+lst_tes2 = []
+
+train_holdout2, test_holdout2 = train_test_split(df_shuffle2, random_state=<span class="hljs-number">777</span>, train_size=<span class="hljs-number">0.7</span>)
+
+lst_tra2.append(train_holdout2)
+lst_tes2.append(test_holdout2)
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>透過</span><strong><span>scikit learn</span></strong><span>的</span><strong><span>train_test_split</span></strong><span>來分割</span></li>
+<li><span>分割的比例</span><strong><span>train_size</span></strong><span>是留在train_data的大小: </span><strong><span>0.7</span></strong></li>
+<li><span>分別把test跟train的部分放入list以便之後放入naive bayes model</span></li>
+</ul>
+</li>
+<li><span>code(K-fold) part I</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span>
+<span data-linenumber="18"></span>
+<span data-linenumber="19"></span>
+<span data-linenumber="20"></span>
+<span data-linenumber="21"></span>
+<span data-linenumber="22"></span></div><div class="code"><span class="hljs-comment"># Train-Test-Split</span>
+<span class="hljs-comment"># for mushroom, iris</span>
+<span class="hljs-comment"># K-fold</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">K_fold</span><span class="hljs-params">(df)</span>:</span>
+    test_num_1 = math.floor(len(df.index)*(float(<span class="hljs-number">1</span>)/float(<span class="hljs-number">3</span>)))
+    test_num_2 = math.floor(len(df.index)*(float(<span class="hljs-number">2</span>)/float(<span class="hljs-number">3</span>)))
+    split = df.index &lt; test_num_1
+    test1 = df[split]
+    train1  = df[~split]
+    split = np.logical_and(df.index &gt;= test_num_1 , df.index &lt; test_num_2)
+    test2 = df[split]
+    train2  = df[~split]
+    split = df.index &gt;= test_num_2
+    test3 = df[split]
+    train3  = df[~split]
+
+    train2 = train2.reset_index(drop=<span class="hljs-keyword">True</span>)
+    test2  = test2.reset_index(drop=<span class="hljs-keyword">True</span>)
+    train3 =train3.reset_index(drop=<span class="hljs-keyword">True</span>)
+    test3  =test3.reset_index(drop=<span class="hljs-keyword">True</span>)
+    <span class="hljs-keyword">return</span> train1, test1, train2, test2, train3, test3
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>因為需要分成三等份，所以需要先知道一分的index到哪裏</span></li>
+<li><span>之後開始一份一份後記得要</span><strong><span>reset_index</span></strong></li>
+</ul>
+</li>
+<li><span>part II</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span>
+<span data-linenumber="18"></span>
+<span data-linenumber="19"></span></div><div class="code"><span class="hljs-comment"># Train-Test-Split</span>
+<span class="hljs-comment"># for mushroom, iris</span>
+<span class="hljs-comment"># K-fold</span>
+
+train_K1, test_K1, train_K2, test_K2, train_K3, test_K3= K_fold( df_shuffle )
+lst_tra.append(train_K1)
+lst_tra.append(train_K2)
+lst_tra.append(train_K3)
+lst_tes.append(test_K1) 
+lst_tes.append(test_K2)
+lst_tes.append(test_K3) 
+
+train_K1, test_K1, train_K2, test_K2, train_K3, test_K3= K_fold( df_shuffle2 )
+lst_tra2.append(train_K1)
+lst_tra2.append(train_K2)
+lst_tra2.append(train_K3)
+lst_tes2.append(test_K1) 
+lst_tes2.append(test_K2)
+lst_tes2.append(test_K3)
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>實際使用剛剛的function</span></li>
+<li><span>做完後分成train跟test依序放入list</span></li>
+</ul>
+</li>
+</ul><h3 id="Model-Construction" data-id="Model-Construction"><a class="anchor hidden-xs" href="#Model-Construction" title="Model-Construction"><span class="octicon octicon-link"></span></a><span>Model Construction</span></h3><ul>
+<li><span>code</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span>
+<span data-linenumber="18"></span>
+<span data-linenumber="19"></span>
+<span data-linenumber="20"></span>
+<span data-linenumber="21"></span>
+<span data-linenumber="22"></span></div><div class="code"><span class="hljs-comment"># Model Construction</span>
+<span class="hljs-comment"># for mushroom, iris</span>
+<span class="hljs-keyword">from</span> sklearn.naive_bayes <span class="hljs-keyword">import</span> MultinomialNB
+<span class="hljs-keyword">from</span> sklearn.naive_bayes <span class="hljs-keyword">import</span> GaussianNB
+
+clf = MultinomialNB(alpha = <span class="hljs-number">0</span>)
+clf_lp = MultinomialNB(alpha = <span class="hljs-number">3</span>)
+gnb = GaussianNB()
+gnb_lp = GaussianNB(var_smoothing = <span class="hljs-number">3</span>)
+
+pred = []
+pred2 = []
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(lst_tra)):
+    clf.fit(lst_tra[i][lst_tra[i].columns[<span class="hljs-number">1</span>:<span class="hljs-number">-1</span>]], lst_tra[i][lst_tra[i].columns[<span class="hljs-number">0</span>]])
+    gnb.fit(lst_tra2[i][lst_tra2[i].columns[<span class="hljs-number">0</span>:<span class="hljs-number">4</span>]], lst_tra2[i][lst_tra2[i].columns[<span class="hljs-number">-1</span>]])
+    pred.append(clf.predict(lst_tes[i][lst_tes[i].columns[<span class="hljs-number">1</span>:<span class="hljs-number">-1</span>]]))
+    pred2.append(gnb.predict(lst_tes2[i][lst_tes2[i].columns[:<span class="hljs-number">4</span>]]))
+    clf_lp.fit(lst_tra[i][lst_tra[i].columns[<span class="hljs-number">1</span>:<span class="hljs-number">-1</span>]], lst_tra[i][lst_tra[i].columns[<span class="hljs-number">0</span>]])
+    pred.append(clf_lp.predict(lst_tes[i][lst_tes[i].columns[<span class="hljs-number">1</span>:<span class="hljs-number">-1</span>]]))
+    gnb_lp.fit(lst_tra2[i][lst_tra2[i].columns[:<span class="hljs-number">4</span>]], lst_tra2[i][lst_tra2[i].columns[<span class="hljs-number">-1</span>]])
+    pred2.append(gnb_lp.predict(lst_tes2[i][lst_tes2[i].columns[:<span class="hljs-number">4</span>]]))  
+    <span class="hljs-comment">#print(i, ' complete')</span>
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>因為mushroom是</span><strong><span>categorical data</span></strong><span>，所以需要使用</span><strong><span>MultinomialNB</span></strong></li>
+<li><span>因為iris是</span><strong><span>numerical data</span></strong><span>，所以根據spec需要使用</span><strong><span>GaussianNB</span></strong></li>
+<li><span>因為需要有跟沒有laplace smoothing的結果，所以需要有一般沒有alpha跟有的值</span></li>
+<li><span>接下來按照之前放入list的順序來分別進行fit的動作，完成training</span></li>
+<li><span>train完就可以把對照的test data套入看predict結果</span></li>
+</ul>
+</li>
+</ul><h3 id="Result" data-id="Result"><a class="anchor hidden-xs" href="#Result" title="Result"><span class="octicon octicon-link"></span></a><span>Result</span></h3><h4 id="Confusion-Matrix" data-id="Confusion-Matrix"><a class="anchor hidden-xs" href="#Confusion-Matrix" title="Confusion-Matrix"><span class="octicon octicon-link"></span></a><span>Confusion Matrix</span></h4><ul>
+<li><span>code</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span></div><div class="code"><span class="hljs-comment">#Result</span>
+<span class="hljs-comment">#Confusion Matrix</span>
+<span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> confusion_matrix
+
+label = [<span class="hljs-string">'without smoothing, holdout'</span>, <span class="hljs-string">'smoothing, holdout'</span>, <span class="hljs-string">'without smoothing, kfold'</span>, <span class="hljs-string">'smoothing, kfold'</span>, <span class="hljs-string">'without smoothing, kfold'</span>, <span class="hljs-string">'smoothing, kfold'</span>, <span class="hljs-string">'without smoothing, kfold'</span>, <span class="hljs-string">'smoothing, kfold'</span>]
+j = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(pred)):
+    print(label[i])
+    print(<span class="hljs-string">'mushroom'</span>)
+    print(confusion_matrix(lst_tes[j][lst_tes[j].columns[<span class="hljs-number">0</span>]], pred[i]))
+    print()
+    print(<span class="hljs-string">'iris'</span>)
+    print(confusion_matrix(lst_tes2[j][lst_tes2[j].columns[<span class="hljs-number">-1</span>]], pred2[i]))
+    <span class="hljs-keyword">if</span> i % <span class="hljs-number">2</span> == <span class="hljs-number">1</span> :
+        j = j + <span class="hljs-number">1</span>   
+    print()
+    print()
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>使用</span><strong><span>scikit learn</span></strong><span>裡面的</span><strong><span>confusion_matrix</span></strong><span>來建立</span></li>
+<li><span>透過比較test應該要的正確答案跟predict出來的答案比對得到confusion matrix</span></li>
+<li><span>因為有分成有smoothing跟沒有的，所以比較完兩次才可以換</span></li>
+</ul>
+</li>
+<li><span>Output</span></li>
+<li><span>mushroom</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>smoothig</span></th>
+<th><span>matrix</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>holdout</span></td>
+<td><span>n</span></td>
+<td><img src="https://i.imgur.com/3BBptG5.png" alt=""></td>
+</tr>
+<tr>
+<td><span>holdout</span></td>
+<td><span>y</span></td>
+<td><img src="https://i.imgur.com/Zwa6YSb.png" alt=""></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>n</span></td>
+<td><img src="https://i.imgur.com/w5sNjtY.png" alt=""></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>y</span></td>
+<td><img src="https://i.imgur.com/sPMlJPm.png" alt=""></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>n</span></td>
+<td><img src="https://i.imgur.com/iWvRiEI.png" alt=""></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>y</span></td>
+<td><img src="https://i.imgur.com/msZdAOT.png" alt=""></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>n</span></td>
+<td><img src="https://i.imgur.com/OGASv5s.png" alt=""></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>y</span></td>
+<td><img src="https://i.imgur.com/n7y0YMz.png" alt=""></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>iris</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>smoothig</span></th>
+<th><span>matrix</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>holdout</span></td>
+<td><span>n</span></td>
+<td><img src="https://i.imgur.com/xuHT8Lj.png" alt=""></td>
+</tr>
+<tr>
+<td><span>holdout</span></td>
+<td><span>y</span></td>
+<td><img src="https://i.imgur.com/UhuUZ8k.png" alt=""></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>n</span></td>
+<td><img src="https://i.imgur.com/NwMakys.png" alt=""></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>y</span></td>
+<td><img src="https://i.imgur.com/MmUEgtV.png" alt=""></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>n</span></td>
+<td><img src="https://i.imgur.com/6oA3u4T.png" alt=""></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>y</span></td>
+<td><img src="https://i.imgur.com/ZuGLuIZ.png" alt=""></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>n</span></td>
+<td><img src="https://i.imgur.com/eRbnYf2.png" alt=""></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>y</span></td>
+<td><img src="https://i.imgur.com/MyZWub8.png" alt=""></td>
+</tr>
+</tbody>
+</table><h4 id="Accuracy" data-id="Accuracy"><a class="anchor hidden-xs" href="#Accuracy" title="Accuracy"><span class="octicon octicon-link"></span></a><span>Accuracy</span></h4><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span></div><div class="code"><span class="hljs-comment">#result </span>
+<span class="hljs-comment">#accuracy</span>
+<span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> accuracy_score
+
+j = <span class="hljs-number">0</span>
+print(<span class="hljs-string">'accuracy:'</span>)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range (len(pred)):
+    print(label[i])
+    print(<span class="hljs-string">'mushroom:'</span>)
+    print(accuracy_score(lst_tes[j][lst_tes[j].columns[<span class="hljs-number">0</span>]], pred[i]))
+    print()
+    print(<span class="hljs-string">'iris:'</span>)
+    print(accuracy_score(lst_tes2[j][lst_tes2[j].columns[<span class="hljs-number">-1</span>]], pred2[i]))
+    <span class="hljs-keyword">if</span> i % <span class="hljs-number">2</span> == <span class="hljs-number">1</span> :
+        j = j + <span class="hljs-number">1</span>   
+    print()
+    print()
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>直接透過</span><strong><span>scikit learn</span></strong><span>上面的</span><strong><span>accuracy_score</span></strong></li>
+<li><span>運作原理同上面</span><strong><span>confusion matrix</span></strong></li>
+</ul>
+</li>
+<li><span>Output</span></li>
+<li><span>mushroom</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>smoothig</span></th>
+<th><span>matrix</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>holdout</span></td>
+<td><span>n</span></td>
+<td><span>0.8146021328958163</span></td>
+</tr>
+<tr>
+<td><span>holdout</span></td>
+<td><span>y</span></td>
+<td><span>0.8141919606234619</span></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>n</span></td>
+<td><span>0.8138847858197932</span></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>y</span></td>
+<td><span>0.8131462333825702</span></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>n</span></td>
+<td><span>0.8175775480059084</span></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>y</span></td>
+<td><span>0.8172082717872969</span></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>n</span></td>
+<td><span>0.8201624815361891</span></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>y</span></td>
+<td><span>0.8205317577548006</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>iris</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>smoothig</span></th>
+<th><span>matrix</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>holdout</span></td>
+<td><span>n</span></td>
+<td><span>0.9555555555555556</span></td>
+</tr>
+<tr>
+<td><span>holdout</span></td>
+<td><span>y</span></td>
+<td><span>0.8888888888888888</span></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>n</span></td>
+<td><span>0.98</span></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>y</span></td>
+<td><span>0.88</span></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>n</span></td>
+<td><span>0.92</span></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>y</span></td>
+<td><span>0.86</span></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>n</span></td>
+<td><span>0.96</span></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>y</span></td>
+<td><span>0.84</span></td>
+</tr>
+</tbody>
+</table><h4 id="Sensitivity" data-id="Sensitivity"><a class="anchor hidden-xs" href="#Sensitivity" title="Sensitivity"><span class="octicon octicon-link"></span></a><span>Sensitivity</span></h4><ul>
+<li><span>code</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span></div><div class="code"><span class="hljs-comment"># result</span>
+<span class="hljs-comment"># sensitivity</span>
+<span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> recall_score
+
+j = <span class="hljs-number">0</span>
+print(<span class="hljs-string">'sensitivity:'</span>)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range (len(pred)):
+    print(label[i])
+    print(<span class="hljs-string">'mushroom:'</span>)
+    print(recall_score(lst_tes[j][lst_tes[j].columns[<span class="hljs-number">0</span>]], pred[i], average=<span class="hljs-string">'macro'</span>))
+    print()
+    print(<span class="hljs-string">'iris:'</span>)
+    print(recall_score(lst_tes2[j][lst_tes2[j].columns[<span class="hljs-number">-1</span>]], pred2[i], average=<span class="hljs-string">'macro'</span>))
+    <span class="hljs-keyword">if</span> i % <span class="hljs-number">2</span> == <span class="hljs-number">1</span> :
+        j = j + <span class="hljs-number">1</span>   
+    print()
+    print()
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>透過</span><strong><span>scikit learn</span></strong><span>的</span><strong><span>recall_score</span></strong><span>來評量</span></li>
+<li><span>其他運作模式同上</span></li>
+</ul>
+</li>
+<li><span>Output</span></li>
+<li><span>mushroom</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>smoothig</span></th>
+<th><span>matrix</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>holdout</span></td>
+<td><span>n</span></td>
+<td><span>0.8042657188795803</span></td>
+</tr>
+<tr>
+<td><span>holdout</span></td>
+<td><span>y</span></td>
+<td><span>0.80388491156808</span></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>n</span></td>
+<td><span>0.8062650950330779</span></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>y</span></td>
+<td><span>0.8055628478420667</span></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>n</span></td>
+<td><span>0.8116112008639592</span></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>y</span></td>
+<td><span>0.8112575940747089</span></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>n</span></td>
+<td><span>0.8187277012209093</span></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>y</span></td>
+<td><span>0.8191013932986373</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>iris</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>smoothig</span></th>
+<th><span>matrix</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>holdout</span></td>
+<td><span>n</span></td>
+<td><span>0.9607843137254902</span></td>
+</tr>
+<tr>
+<td><span>holdout</span></td>
+<td><span>y</span></td>
+<td><span>0.9019607843137255</span></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>n</span></td>
+<td><span>0.9791666666666666</span></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>y</span></td>
+<td><span>0.8914473684210527</span></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>n</span></td>
+<td><span>0.9259259259259259</span></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>y</span></td>
+<td><span>0.8703703703703703</span></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>n</span></td>
+<td><span>0.9629629629629629</span></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>y</span></td>
+<td><span>0.8518518518518517</span></td>
+</tr>
+</tbody>
+</table><h4 id="Precision" data-id="Precision"><a class="anchor hidden-xs" href="#Precision" title="Precision"><span class="octicon octicon-link"></span></a><span>Precision</span></h4><ul>
+<li><span>code</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span></div><div class="code"><span class="hljs-comment"># result</span>
+<span class="hljs-comment"># precision</span>
+<span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> precision_score
+
+j = <span class="hljs-number">0</span>
+print(<span class="hljs-string">'precision:'</span>)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range (len(pred)):
+    print(label[i])
+    print(<span class="hljs-string">'mushroom:'</span>)
+    print(precision_score(lst_tes[j][lst_tes[j].columns[<span class="hljs-number">0</span>]], pred[i], average=<span class="hljs-string">'macro'</span>))
+    print()
+    print(<span class="hljs-string">'iris:'</span>)
+    print(precision_score(lst_tes2[j][lst_tes2[j].columns[<span class="hljs-number">-1</span>]], pred2[i], average=<span class="hljs-string">'macro'</span>))
+    <span class="hljs-keyword">if</span> i % <span class="hljs-number">2</span> == <span class="hljs-number">1</span> :
+        j = j + <span class="hljs-number">1</span>   
+    print()
+    print()
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>透過</span><strong><span>scikit learn</span></strong><span>的</span><strong><span>precision_score</span></strong><span>來評量</span></li>
+<li><span>其他運作模式同上</span></li>
+</ul>
+</li>
+<li><span>Output</span></li>
+<li><span>mushroom</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>smoothig</span></th>
+<th><span>matrix</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>holdout</span></td>
+<td><span>n</span></td>
+<td><span>0.8357764819705567</span></td>
+</tr>
+<tr>
+<td><span>holdout</span></td>
+<td><span>y</span></td>
+<td><span>0.835164178747857</span></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>n</span></td>
+<td><span>0.841878150275466</span></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>y</span></td>
+<td><span>0.8407272966782053</span></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>n</span></td>
+<td><span>0.8410635324744932</span></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>y</span></td>
+<td><span>0.840512940093213</span></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>n</span></td>
+<td><span>0.8399957518498367</span></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>y</span></td>
+<td><span>0.8402603265017405</span></td>
+</tr>
+</tbody>
+</table><ul>
+<li><span>iris</span></li>
+</ul><table>
+<thead>
+<tr>
+<th><span>type</span></th>
+<th><span>smoothig</span></th>
+<th><span>matrix</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>holdout</span></td>
+<td><span>n</span></td>
+<td><span>0.9607843137254902</span></td>
+</tr>
+<tr>
+<td><span>holdout</span></td>
+<td><span>y</span></td>
+<td><span>0.8862179487179488</span></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>n</span></td>
+<td><span>0.9833333333333334</span></td>
+</tr>
+<tr>
+<td><span>kfold1</span></td>
+<td><span>y</span></td>
+<td><span>0.8830065359477124</span></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>n</span></td>
+<td><span>0.9333333333333332</span></td>
+</tr>
+<tr>
+<td><span>kfold2</span></td>
+<td><span>y</span></td>
+<td><span>0.8985507246376812</span></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>n</span></td>
+<td><span>0.9555555555555556</span></td>
+</tr>
+<tr>
+<td><span>kfold3</span></td>
+<td><span>y</span></td>
+<td><span>0.873015873015873</span></td>
+</tr>
+</tbody>
+</table><h2 id="Comparison-amp-Conclusion" data-id="Comparison-amp-Conclusion"><a class="anchor hidden-xs" href="#Comparison-amp-Conclusion" title="Comparison-amp-Conclusion"><span class="octicon octicon-link"></span></a><span>Comparison &amp; Conclusion</span></h2><ol>
+<li><font color="#f00"><strong><span>資料經過laplace smoothing後通常預估準確率會降低</span></strong></font>
+<ul>
+<li><span>唯一有例外的地方是mushroom的kfold第三組，但整體趨勢還是很單一</span></li>
+</ul>
+</li>
+<li><font color="#795"><strong><span>Kflod的準確度會跟選擇哪組有所不同</span></strong></font>
+<ul>
+<li><span>但是在真正做評測之前不知道哪個會比較準</span></li>
+</ul>
+</li>
+</ol><h2 id="Questions" data-id="Questions"><a class="anchor hidden-xs" href="#Questions" title="Questions"><span class="octicon octicon-link"></span></a><span>Questions</span></h2><pre><code class="wrap hljs">1. Show P(Xstalk−color−below−ring|Y=e) with and without Laplace smoothing by histograms
+</code></pre><ul>
+<li><span>code</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span>
+<span data-linenumber="18"></span>
+<span data-linenumber="19"></span>
+<span data-linenumber="20"></span>
+<span data-linenumber="21"></span>
+<span data-linenumber="22"></span>
+<span data-linenumber="23"></span>
+<span data-linenumber="24"></span>
+<span data-linenumber="25"></span>
+<span data-linenumber="26"></span>
+<span data-linenumber="27"></span>
+<span data-linenumber="28"></span>
+<span data-linenumber="29"></span>
+<span data-linenumber="30"></span>
+<span data-linenumber="31"></span>
+<span data-linenumber="32"></span>
+<span data-linenumber="33"></span>
+<span data-linenumber="34"></span>
+<span data-linenumber="35"></span></div><div class="code"><span class="hljs-comment"># Question</span>
+<span class="hljs-comment"># Show P(Xstalk−color−below−ring|Y=e) with and without Laplace smoothing by histograms</span>
+A = df_drop[(df_drop.columns)[<span class="hljs-number">14</span>]].value_counts()
+print(A)
+dict = [<span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'g'</span>, <span class="hljs-string">'n'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'p'</span>, <span class="hljs-string">'w'</span>, <span class="hljs-string">'y'</span>]
+z = lst_tes[<span class="hljs-number">0</span>][lst_tes[<span class="hljs-number">0</span>].columns[<span class="hljs-number">14</span>]]
+z.reset_index(drop = <span class="hljs-keyword">True</span>, inplace = <span class="hljs-keyword">True</span>)
+clf.fit(lst_tra[<span class="hljs-number">0</span>][lst_tra[<span class="hljs-number">0</span>].columns[<span class="hljs-number">1</span>:<span class="hljs-number">-1</span>]], lst_tra[<span class="hljs-number">0</span>][lst_tra[<span class="hljs-number">0</span>].columns[<span class="hljs-number">0</span>]])
+b = clf.predict(lst_tes[<span class="hljs-number">0</span>][lst_tes[<span class="hljs-number">0</span>].columns[<span class="hljs-number">1</span>:<span class="hljs-number">-1</span>]])
+x = []
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(b)):
+    <span class="hljs-keyword">if</span> b[i] == <span class="hljs-number">0</span>:
+        x.append(dict[z[i]])
+plt.hist(x, density=<span class="hljs-keyword">False</span>)
+    
+plt.legend(loc=<span class="hljs-string">'upper left'</span>)
+plt.title(<span class="hljs-string">'no smoothing'</span>)
+plt.xlabel(<span class="hljs-string">'stalk−color−below−ring'</span>)
+plt.ylabel(<span class="hljs-string">'frequency'</span>)
+plt.savefig(<span class="hljs-string">'Question1-1'</span>)
+
+
+clf_lp.fit(lst_tra[<span class="hljs-number">0</span>][lst_tra[<span class="hljs-number">0</span>].columns[<span class="hljs-number">1</span>:<span class="hljs-number">-1</span>]], lst_tra[<span class="hljs-number">0</span>][lst_tra[<span class="hljs-number">0</span>].columns[<span class="hljs-number">0</span>]])
+b = clf_lp.predict(lst_tes[<span class="hljs-number">0</span>][lst_tes[<span class="hljs-number">0</span>].columns[<span class="hljs-number">1</span>:<span class="hljs-number">-1</span>]])
+x = []
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(b)):
+    <span class="hljs-keyword">if</span> b[i] == <span class="hljs-number">0</span>:
+        x.append(dict[z[i]])
+plt.hist(x, density=<span class="hljs-keyword">False</span>)
+    
+plt.legend(loc=<span class="hljs-string">'upper left'</span>)
+plt.title(<span class="hljs-string">'with smoothing'</span>)
+plt.xlabel(<span class="hljs-string">'stalk−color−below−ring'</span>)
+plt.ylabel(<span class="hljs-string">'frequency'</span>)
+plt.savefig(<span class="hljs-string">'Question1-2'</span>)
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>先做好predict(這邊用holdout的training set)</span></li>
+<li><span>把stalk−color−below−ring的部分先抓出來，重新index，讓他的呼叫可以跟predict出來的index相同</span></li>
+<li><span>一個一個比對，如果是edible的就把他加入新的list裡面</span></li>
+<li><span>最後用histogram呈現</span></li>
+<li><span>因為資料已經經過fit_transform，所以先看資料統計來知道哪個代號是對上哪個數字，再進行放入list</span></li>
+</ul>
+</li>
+<li><span>Output</span><br>
+<img src="https://i.imgur.com/XtmTJSD.png" alt=""><br>
+<img src="https://i.imgur.com/hW3xIfg.png" alt=""></li>
+</ul><pre><code class="wrap hljs">2. What are the values of μ and σ of assumed P(Xpetal_length|Y=Iris Versicolour)?
+</code></pre><ul>
+<li><span>code</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span>
+<span data-linenumber="18"></span>
+<span data-linenumber="19"></span>
+<span data-linenumber="20"></span>
+<span data-linenumber="21"></span>
+<span data-linenumber="22"></span>
+<span data-linenumber="23"></span>
+<span data-linenumber="24"></span>
+<span data-linenumber="25"></span>
+<span data-linenumber="26"></span>
+<span data-linenumber="27"></span></div><div class="code"><span class="hljs-comment"># Question</span>
+<span class="hljs-comment"># What are the values of μ and σ of assumed P(Xpetal_length|Y=Iris Versicolour)?</span>
+
+first = df_training2[df_training2.columns[<span class="hljs-number">-1</span>]] <span class="hljs-comment">#e/p</span>
+edible = df_training2[first==<span class="hljs-number">1</span>] <span class="hljs-comment">#e的feature</span>
+
+first = edible[<span class="hljs-string">'petal_length'</span>] <span class="hljs-comment">#e/p</span>
+mean = sum(first)/len(first)
+stdev = sum([(x-mean)**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> first]) / float(len (first)<span class="hljs-number">-1</span>)
+print(<span class="hljs-string">'From overall training data:'</span>)
+print(<span class="hljs-string">'mean: '</span>, mean)
+print(<span class="hljs-string">'stdev: '</span>, stdev)
+print()
+
+z = lst_tes2[<span class="hljs-number">3</span>][<span class="hljs-string">'petal_length'</span>]
+z.reset_index(drop = <span class="hljs-keyword">True</span>, inplace = <span class="hljs-keyword">True</span>)
+gnb.fit(lst_tra2[<span class="hljs-number">3</span>][lst_tra2[<span class="hljs-number">3</span>].columns[:<span class="hljs-number">4</span>]], lst_tra2[<span class="hljs-number">3</span>][lst_tra2[<span class="hljs-number">3</span>].columns[<span class="hljs-number">-1</span>]])
+b = gnb.predict(lst_tes2[<span class="hljs-number">3</span>][lst_tes2[<span class="hljs-number">3</span>].columns[:<span class="hljs-number">4</span>]])
+x = []
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(b)):
+    <span class="hljs-keyword">if</span> b[i] == <span class="hljs-number">1</span>:
+        x.append(z[i])
+mean = sum(x)/len(x)
+stdev = sum([(i-mean)**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> x]) / float(len (x)<span class="hljs-number">-1</span>)
+print(<span class="hljs-string">'From trained result of Kfold:'</span>)
+print(<span class="hljs-string">'mean: '</span>, mean)
+print(<span class="hljs-string">'stdev: '</span>, stdev)
+</div></div></code></pre><ul>
+<li><span>Explanation</span>
+<ul>
+<li><span>全部的部分</span>
+<ul>
+<li><span>先確定取出來的是需要的Iris Versicolour (</span><font color="#f00"><span>因為已經改成數字化，所以要用代號表示</span></font><span>)</span></li>
+<li><span>取出要得</span><strong><span>petal_length</span></strong><span>，將之前算的公式帶入即可</span></li>
+</ul>
+</li>
+<li><span>training的部分</span>
+<ul>
+<li><span>跟上題類似，先放入model中得到predict結果</span></li>
+<li><span>把petal_length抓出來，重新index，讓他的呼叫可以跟predict出來的index相同</span></li>
+<li><span>一個一個比對，如果是Iris Versicolour的就把他加入新的list裡面</span></li>
+<li><span>最後帶入計算平均跟標準差的公式即可</span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span>Output</span></li>
+</ul><blockquote>
+<p><span>From overall training data:</span><br>
+<span>mean:  4.26</span><br>
+<span>stdev:  0.22081632653061237</span></p>
+</blockquote><blockquote>
+<p><span>From trained result of Kfold:</span><br>
+<span>mean:  4.271428571428571</span><br>
+<span>stdev:  0.23758241758241766</span></p>
+</blockquote><pre><code class="wrap hljs">3. Use a graph to show the probability density function of assumed P(Xpetal_length|Y=Iris Versicolour) 
+</code></pre><ul>
+<li><span>code</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span></div><div class="code"><span class="hljs-comment"># Question</span>
+<span class="hljs-comment"># Use a graph to show the probability density function of assumed P(Xpetal_length|Y=Iris Versicolour)</span>
+<span class="hljs-keyword">import</span> scipy.stats <span class="hljs-keyword">as</span> stats
+<span class="hljs-keyword">import</span> math
+
+x = np.linspace(mean - <span class="hljs-number">3</span>*stdev, mean + <span class="hljs-number">3</span>*stdev, <span class="hljs-number">100</span>)
+plt.plot(x, stats.norm.pdf(x, mean, stdev))
+plt.savefig(<span class="hljs-string">'Question2-2'</span>)
+</div></div></code></pre><ul>
+<li>
+<p><span>Explanation</span></p>
+<ul>
+<li><span>同上題的部分，用求出來的平均跟標準差做出normal distribution的結果</span></li>
+</ul>
+</li>
+<li>
+<p><span>Output</span><br>
+<img src="https://i.imgur.com/KT6Il5S.png" alt=""></p>
+</li>
+</ul></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav">
+<li class=""><a href="#ML-Lab01--Naive-Bayes-Report" title="ML Lab01- Naive Bayes Report">ML Lab01- Naive Bayes Report</a><ul class="nav">
+<li><a href="#Code-Explanation" title="Code Explanation">Code Explanation</a><ul class="nav">
+<li><a href="#Data-input" title="Data input">Data input</a></li>
+<li><a href="#Data-visualization" title="Data visualization">Data visualization</a></li>
+<li><a href="#Data-Preprocessing" title="Data Preprocessing">Data Preprocessing</a></li>
+<li><a href="#Train-Test-Split" title="Train-Test-Split">Train-Test-Split</a></li>
+<li><a href="#Model-Construction" title="Model Construction">Model Construction</a></li>
+<li><a href="#Result" title="Result">Result</a></li>
+</ul>
+</li>
+<li><a href="#Comparison-amp-Conclusion" title="Comparison &amp; Conclusion">Comparison &amp; Conclusion</a></li>
+<li><a href="#Questions" title="Questions">Questions</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
+        <div class="toc"><ul class="nav">
+<li class=""><a href="#ML-Lab01--Naive-Bayes-Report" title="ML Lab01- Naive Bayes Report">ML Lab01- Naive Bayes Report</a><ul class="nav">
+<li><a href="#Code-Explanation" title="Code Explanation">Code Explanation</a><ul class="nav">
+<li><a href="#Data-input" title="Data input">Data input</a></li>
+<li><a href="#Data-visualization" title="Data visualization">Data visualization</a></li>
+<li><a href="#Data-Preprocessing" title="Data Preprocessing">Data Preprocessing</a></li>
+<li><a href="#Train-Test-Split" title="Train-Test-Split">Train-Test-Split</a></li>
+<li><a href="#Model-Construction" title="Model Construction">Model Construction</a></li>
+<li><a href="#Result" title="Result">Result</a></li>
+</ul>
+</li>
+<li><a href="#Comparison-amp-Conclusion" title="Comparison &amp; Conclusion">Comparison &amp; Conclusion</a></li>
+<li><a href="#Questions" title="Questions">Questions</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        var toggle = $('.expand-toggle');
+        var tocExpand = false;
+
+        checkExpandToggle();
+        toggle.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            tocExpand = !tocExpand;
+            checkExpandToggle();
+        })
+
+        function checkExpandToggle () {
+            var toc = $('.ui-toc-dropdown .toc');
+            var toggle = $('.expand-toggle');
+            if (!tocExpand) {
+                toc.removeClass('expand');
+                toggle.text('Expand all');
+            } else {
+                toc.addClass('expand');
+                toggle.text('Collapse all');
+            }
+        }
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>
